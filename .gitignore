@@ -118,3 +118,5 @@ typings/
 .idea/
 package.json
 yarn.lock
+
+.idea
