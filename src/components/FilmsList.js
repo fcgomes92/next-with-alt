@@ -1,16 +1,17 @@
 import React from 'react';
 
+import Link from 'next/link';
+
 import connectToStores from 'alt-utils/lib/connectToStores';
 import GlobalStore from '../alt/stores/GlobalStore';
 import GlobalActions from '../alt/actions/GlobalActions';
-import FilmsDetail from './FilmsDetail';
 
 class FilmsList extends React.Component {
   static getStores = () => [GlobalStore];
   static getPropsFromStores = () => GlobalStore.getState();
 
   state = {
-    loadingFilm: false
+    loading: false,
   };
 
   componentDidMount() {
@@ -20,12 +21,13 @@ class FilmsList extends React.Component {
   }
 
   handleFetchData = async () => {
-    await this.setState({ loadingFilms: true });
+    await this.setState({ loading: true });
     await GlobalActions.fetchFilms();
-    await this.setState({ loadingFilms: false });
+    await this.setState({ loading: false });
   };
 
   render() {
+    if (this.props.loading) return <p>Loading...</p>;
     return (
       <>
         <p>Movies:</p>
@@ -33,19 +35,14 @@ class FilmsList extends React.Component {
           {this.props.films.ids.map((fid, idx) => {
             const film = this.props.films.items[fid];
             return (
-              <li
-                key={idx}
-                onClick={async () => {
-                  window.history.pushState('', '', `/index?fid=${fid}`);
-                  await this.setState({ loadingFilm: true });
-                  await GlobalActions.fetchFilm(fid);
-                  await this.setState({ loadingFilm: false });
-                }}
-              >{film.title}</li>
+              <Link href={`/film?fid=${fid}`} key={idx}>
+                <li>
+                  {film.title}
+                </li>
+              </Link>
             )
           })}
         </ul>
-        <FilmsDetail loading={this.state.loadingFilm}/>
       </>
     );
   }

@@ -11,7 +11,6 @@ class GlobalStore {
       items: {},
       currentFilm: {},
     },
-    serverInitialized: isServer(),
   };
 
   constructor() {
@@ -35,12 +34,10 @@ class GlobalStore {
       acc.items[result.url] = { ...result };
       return acc;
     }, this.state.films);
-    this.state.serverInitialized = isServer();
   }
 
   fetchFilm({ data, fid }) {
     this.state.films = { ...this.state.films, currentFilm: { ...data, id: fid } };
-    this.state.serverInitialized = isServer();
   }
 }
 
