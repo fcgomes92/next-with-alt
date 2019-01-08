@@ -7,10 +7,10 @@ import FilmsDetail from '../src/components/FilmsDetail';
 
 
 export default class Film extends React.Component {
-  static async getInitialProps({ req }) {
+  static async getInitialProps({ query }) {
     const _isServer = isServer();
-    if (_isServer && req && req.query && req.query.fid) {
-      await GlobalActions.fetchFilm(req.query.fid);
+    if (_isServer && query && query.fid) {
+      await GlobalActions.fetchFilm(query.fid);
     }
     return {
       serverInitialized: _isServer,
