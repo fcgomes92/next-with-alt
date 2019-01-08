@@ -27,7 +27,7 @@ class FilmsList extends React.Component {
   };
 
   render() {
-    if (this.props.loading) return <p>Loading...</p>;
+    if (this.state.loading) return <p>Loading...</p>;
     return (
       <>
         <p>Movies:</p>
@@ -36,7 +36,7 @@ class FilmsList extends React.Component {
             const film = this.props.films.items[fid];
             return (
               <Link href={`/film?fid=${fid}`} key={idx}>
-                <li>
+                <li style={{cursor: 'pointer'}}>
                   {film.title}
                 </li>
               </Link>

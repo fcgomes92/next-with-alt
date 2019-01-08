@@ -18,10 +18,6 @@ export default class Index extends React.Component {
     }
   }
 
-  state = {
-    loadingFilm: false,
-  };
-
   render() {
     return (
       <>
