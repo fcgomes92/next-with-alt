@@ -1,0 +1,28 @@
+{
+  "name": "next-with-alt",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:fcgomes92/next-with-alt.git",
+  "author": "Fernando Gomes <fcgomes.92@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "alt": "^0.18.6",
+    "alt-utils": "^2.0.0",
+    "axios": "^0.18.0",
+    "express": "^4.16.4",
+    "next": "^7.0.2",
+    "node": "^11.5.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "now": "^12.1.14"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "deploy": "yarn build && now"
+  }
+}

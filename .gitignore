@@ -114,9 +114,7 @@ typings/
 
 # next.js build output
 .next
-.gitignore
 .idea/
-package.json
 yarn.lock
 
 .idea
